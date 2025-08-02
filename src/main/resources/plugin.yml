@@ -1,0 +1,10 @@
+name: VelocityUtilsLink
+version: '1.0'
+main: org.rexi.velocityUtilsLink.VelocityUtilsLink
+api-version: '1.18'
+author: Rexi666
+softdepend: [PlaceholderAPI]
+channels:
+  velocityutils:placeholders:
+  velocityutils:staffchat:
+  velocityutils:adminchat:
