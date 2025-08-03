@@ -37,6 +37,11 @@ public class VelocityUtilsPlaceholders extends PlaceholderExpansion implements P
         return "velocityutils";
     }
 
+    @Override
+    public boolean persist() {
+        return true;
+    }
+
     private final java.util.Set<String> usedIdentifiers = ConcurrentHashMap.newKeySet();
 
     @Override
