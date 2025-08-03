@@ -2,18 +2,19 @@ package org.rexi.velocityUtilsLink;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.rexi.velocityUtilsLink.listeners.LegacyChatListener;
+import org.rexi.velocityUtilsLink.listeners.PaperChatListener;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public final class VelocityUtilsLink extends JavaPlugin implements Listener, PluginMessageListener {
+public final class VelocityUtilsLink extends JavaPlugin implements PluginMessageListener {
 
     private final Map<UUID, String> pendingMessages = new HashMap<>();
     private final java.util.Set<UUID> ignoreNextChatEvent = new java.util.HashSet<>();
@@ -24,7 +25,12 @@ public final class VelocityUtilsLink extends JavaPlugin implements Listener, Plu
     public void onEnable() {
         //Staffchat & Adminchat
 
-        Bukkit.getPluginManager().registerEvents(this, this);
+        try {
+            Class.forName("io.papermc.paper.event.player.AsyncChatEvent");
+            Bukkit.getPluginManager().registerEvents(new PaperChatListener(this), this);
+        } catch (ClassNotFoundException e) {
+            Bukkit.getPluginManager().registerEvents(new LegacyChatListener(this), this);
+        }
 
         // Registrar canales de plugin messaging
         Bukkit.getMessenger().registerOutgoingPluginChannel(this, "velocityutils:staffchat");
@@ -52,31 +58,23 @@ public final class VelocityUtilsLink extends JavaPlugin implements Listener, Plu
         }
     }
 
-    @EventHandler
-    public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
-        Player player = event.getPlayer();
+    public void handleChat(Player player, String message, Cancellable event) {
         UUID uuid = player.getUniqueId();
 
-        if (ignoreNextChatEvent.remove(uuid)) {
-            return;
-        }
+        if (ignoreNextChatEvent.remove(uuid)) return;
 
         boolean hasStaff = player.hasPermission("velocityutils.staffchat");
         boolean hasAdmin = player.hasPermission("velocityutils.adminchat");
 
-        if (!hasStaff && !hasAdmin) {
-            return; // No tiene permisos especiales
-        }
+        if (!hasStaff && !hasAdmin) return;
 
-        // Cancelamos el mensaje original por si va a staffchat o adminchat
         event.setCancelled(true);
-
-        pendingMessages.put(uuid, event.getMessage());
+        pendingMessages.put(uuid, message);
 
         if (hasAdmin) {
-            requestToggleStatus(player, event.getMessage(), "adminchat");
+            requestToggleStatus(player, message, "adminchat");
         } else if (hasStaff) {
-            requestToggleStatus(player, event.getMessage(), "staffchat");
+            requestToggleStatus(player, message, "staffchat");
         }
     }
 
