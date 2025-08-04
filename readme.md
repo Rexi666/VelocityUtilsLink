@@ -1,11 +1,35 @@
-# Backend plugin link for [VelocityUtils](https://github.com/Rexi666/VelocityUtils)
+# 🌐 VelocityUtils Backend Plugin
 
-### Placeholders:
-- `%velocityutils_globalplayers%`
-- `%velocityutils_players_<server>%`
+This plugin acts as the backend companion for [VelocityUtils](https://github.com/Rexi666/VelocityUtils), enabling additional features from Spigot/Paper servers.
 
-Need [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
+---
 
-### You can use staffchat and adminchat
+## 🧩 PlaceholderAPI Support
 
-### Command /vualert <message> to send an alert to all the network. Useful if you want to send an alert from the backend console (for example, from a menu)
+This plugin provides the following *placeholders* if you have [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) installed:
+
+- `%velocityutils_globalplayers%` — Total number of players on the entire network.
+- `%velocityutils_players_<server>%` — Number of players on a specific server.
+
+---
+
+## 💬 Special Chats
+
+The following internal chat channels are available:
+
+- **StaffChat** — For communication between staff members.
+- **AdminChat** — For communication between administrators.
+
+---
+
+## 🚨 Command: `/vualert <message>`
+
+Sends an alert message to the entire network.  
+Useful for sending alerts from the backend console (for example, from custom menus)
+
+---
+
+## ✅ Requirements
+
+- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
+- [VelocityUtils](https://github.com/Rexi666/VelocityUtils) installed on your Velocity proxy.
