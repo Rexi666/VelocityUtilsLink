@@ -31,5 +31,5 @@ Useful for sending alerts from the backend console (for example, from custom men
 
 ## ✅ Requirements
 
-- [VelocityUtils](https://github.com/Rexi666/VelocityUtils) installed on your Velocity proxy.
-- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (optional, only if you want to use placeholders)
+- [VelocityUtils](https://github.com/Rexi666/VelocityUtils) Installed on your Velocity proxy.
+- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) Optional, only if you want to use placeholders
