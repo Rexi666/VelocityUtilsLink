@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.rexi.velocityUtilsLink.commands.vualertCommand;
 
 import java.io.*;
 import java.util.HashMap;
@@ -22,18 +23,24 @@ public final class VelocityUtilsLink extends JavaPlugin implements Listener, Plu
 
     @Override
     public void onEnable() {
-        //Staffchat & Adminchat
+
+        // vualert
+
+        getCommand("vualert").setExecutor(new vualertCommand(this));
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "velocityutils:alerts");
+
+
+        // Staffchat & Adminchat
 
         Bukkit.getPluginManager().registerEvents(this, this);
 
-        // Registrar canales de plugin messaging
         Bukkit.getMessenger().registerOutgoingPluginChannel(this, "velocityutils:staffchat");
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "velocityutils:staffchat", this);
 
         Bukkit.getMessenger().registerOutgoingPluginChannel(this, "velocityutils:adminchat");
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "velocityutils:adminchat", this);
 
-        //Placeholders
+        // Placeholders
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null &&
                 Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {

@@ -8,3 +8,8 @@ channels:
   velocityutils:placeholders:
   velocityutils:staffchat:
   velocityutils:adminchat:
+  velocityutils:alerts:
+commands:
+  vualert:
+    description: Send an alert to all the network
+    usage: /vualert <alert>
