@@ -33,3 +33,15 @@ Useful for sending alerts from the backend console (for example, from custom men
 
 - [VelocityUtils](https://github.com/Rexi666/VelocityUtils) Installed on your Velocity proxy.
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) Optional, only if you want to use placeholders
+
+---
+
+## 💬 Need Help or Support?
+📖 Wiki: https://rexi666-plugins.gitbook.io/rexi666/velocityutils
+
+Join my Discord server (Spanish/English):
+<p align="center">
+  <a href="https://discord.com/invite/a3zkKtrjTr">
+    <img src="https://discordapp.com/api/guilds/1025688556779360266/widget.png?style=banner3" alt="Discord Invite"/>
+  </a>
+</p>
